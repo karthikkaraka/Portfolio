@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  --color-brand-bg: #0B0F19;
+  --color-brand-bg-secondary: #0E1322;
+  --color-brand-card: #12182B;
+  --color-brand-primary: #7C3AED;
+  --color-brand-secondary: #3B82F6;
+  --color-brand-text: #FFFFFF;
+  --color-brand-muted: #8E98B0;
+  
+  --animate-subtle-drift: subtle-drift 20s infinite alternate ease-in-out;
+}
+
+@keyframes subtle-drift {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(20px, -20px) scale(1.05);
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(-10px, 10px) scale(0.95);
+    opacity: 0.15;
+  }
+}
+
+/* Custom Base Styles - Editorial human-made layout */
+html {
+  scroll-behavior: smooth;
+  background-color: #0B0F19;
+  color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0B0F19;
+  min-height: 100vh;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* Monospace technical tags and stats labels */
+.editorial-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #7C3AED;
+}
+
+/* Background wireframe dot matrix pattern */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.3);
+}
+
+/* Editorial Minimalist Panels (Rob Bowen style) */
+.editorial-card {
+  background: #12182B;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.editorial-card-active {
+  background: #12182B;
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.04);
+}
+
+.editorial-input {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-input:focus {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(124, 58, 237, 0.4);
+  outline: none;
+}
+
+/* Custom Editorial Nav Indicator */
+.nav-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #7C3AED;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Print Styling for Elegant Offline Resume Generation */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  .editorial-card {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}

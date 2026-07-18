@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Database, ShieldAlert, BookOpen, Layers, GitBranch, AlertCircle } from 'lucide-react';
+import { X, ShieldAlert, BookOpen, Layers, GitBranch, AlertCircle } from 'lucide-react';
 
 export default function ProjectModal({ project, isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState('overview');
@@ -22,7 +22,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   const tabs = [
     { id: 'overview', label: 'Overview', icon: BookOpen },
     { id: 'architecture', label: 'Architecture', icon: Layers },
-    { id: 'database', label: 'Database Design', icon: Database },
     { id: 'security', label: 'Security & Auth', icon: ShieldAlert },
   ];
 
@@ -198,66 +197,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                     </div>
                   )}
 
-                  {/* DATABASE TAB */}
-                  {activeTab === 'database' && (
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-mono text-[10px] tracking-widest text-white uppercase font-bold mb-3 flex items-center gap-2">
-                          <Database className="w-4 h-4 text-brand-secondary" />
-                          Relational Schema Overview
-                        </h4>
-                        <p className="text-brand-muted text-xs sm:text-sm leading-relaxed mb-4 font-light">
-                          {project.details.database}
-                        </p>
-                      </div>
 
-                      {/* Representation Table view */}
-                      <div className="bg-white/[0.01] rounded-2xl border border-white/5 overflow-hidden">
-                        <div className="p-4 bg-white/[0.01] border-b border-white/5 flex items-center justify-between">
-                          <span className="font-mono text-[9px] font-bold text-white uppercase tracking-wider">
-                            Typical Schema Mapping
-                          </span>
-                          <span className="font-mono text-[8px] text-brand-secondary bg-brand-secondary/5 px-2.5 py-0.5 rounded border border-brand-secondary/15">
-                            MySQL v8.0 / InnoDB
-                          </span>
-                        </div>
-                        
-                        <div className="p-4 text-[10px] font-mono text-brand-muted space-y-3">
-                          <div className="bg-brand-bg/50 p-4 rounded-xl border border-white/5">
-                            <div className="text-white font-bold flex items-center gap-1 mb-2">
-                              <span className="text-brand-primary">TABLE //</span> users
-                            </div>
-                            <div className="pl-3 space-y-0.5 text-brand-muted/80">
-                              id : BIGINT (PK, AUTO_INCREMENT)<br />
-                              email : VARCHAR(255) (UNIQUE, NOT NULL)<br />
-                              password_hash : VARCHAR(255) (NOT NULL)<br />
-                              is_active : BOOLEAN (DEFAULT TRUE)
-                            </div>
-                          </div>
-                          
-                          <div className="bg-brand-bg/50 p-4 rounded-xl border border-white/5">
-                            <div className="text-white font-bold flex items-center gap-1 mb-2">
-                              <span className="text-brand-primary">TABLE //</span> roles
-                            </div>
-                            <div className="pl-3 space-y-0.5 text-brand-muted/80">
-                              id : BIGINT (PK, AUTO_INCREMENT)<br />
-                              name : VARCHAR(50) (NOT NULL, e.g. 'ROLE_USER', 'ROLE_ADMIN')
-                            </div>
-                          </div>
-
-                          <div className="bg-brand-bg/50 p-4 rounded-xl border border-white/5">
-                            <div className="text-white font-bold flex items-center gap-1 mb-2">
-                              <span className="text-brand-primary">TABLE //</span> user_roles
-                            </div>
-                            <div className="pl-3 space-y-0.5 text-brand-muted/80">
-                              user_id : BIGINT (FK users.id, PK)<br />
-                              role_id : BIGINT (FK roles.id, PK)
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
 
                   {/* SECURITY TAB */}
                   {activeTab === 'security' && (

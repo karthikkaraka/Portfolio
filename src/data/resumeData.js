@@ -104,7 +104,6 @@ export const resumeData = {
       details: {
         problem: "Campuses and large organizations face significant tracking challenges with lost items. Traditional bullet boards or email groups lead to high rates of duplicate reports, fraudulent claims, lack of ownership proof, and a heavy manual workload for physical administration offices.",
         architecture: "Layers include Controller, Service, and Repository patterns on the backend, communicating over a REST JSON boundary with a responsive React Single Page Application frontend. Integrates JavaMailSender for system-wide transactional email notifications.",
-        database: "MySQL schema utilizing tables for 'users', 'roles', 'belongings' (containing descriptions, coordinates, categories, dates, and statuses like lost, found, claimed), and a critical 'claims' table to track requests, ownership upload logs, and moderation states.",
         security: "Stateless security framework utilizing Spring Security with a custom OncePerRequestFilter to intercept and validate Bearer JWT tokens. Leverages secure endpoints restricted to roles (ROLE_USER, ROLE_ADMIN) and transient OTP generation with expiry bounds for self-service user registration.",
         lessons: "Learned how to design scalable search indices using pagination and filters in Spring Data JPA. Perfected the integration of React's state management with stateless JWT auth cookies and developed a resilient item-matching algorithm."
       },
@@ -127,7 +126,6 @@ export const resumeData = {
       details: {
         problem: "Modern clinical environments require structured, secure patient workflows. Sharing sensitive medical details between different hospital departments requires complex access control grids to protect data confidentiality while keeping doctor-patient scheduling workflows frictionless.",
         architecture: "Pure REST API backend structured into discrete domain modules. Utilizes dynamic mapping, global exception boundaries, and transaction-wrapped services for appointment updates.",
-        database: "Highly normalized relational architecture mapping Doctors (One-to-Many with Appointments), Departments (One-to-Many with Staff), Patients, and dynamic appointment slots, ensuring strict referential integrity.",
         security: "Granular Role-Based Access Control (RBAC) mapping specific roles (Admin, Doctor, Nurse, Receptionist, Staff) to designated HTTP endpoints using @PreAuthorize. JWT tokens carry active scopes to prevent horizontal privilege escalation.",
         lessons: "Mastered deep Hibernate performance techniques, including mapping lazy loaded relationships, custom JPQL joins, and using entity graphs to prevent typical N+1 query bottlenecks during staff roster compilation."
       },
@@ -150,7 +148,6 @@ export const resumeData = {
       details: {
         problem: "Managing consistent shopping cart states, preventing checkout collisions on low-inventory items, and securely processing multi-line transaction orders without introducing system-wide lockouts.",
         architecture: "Domain-Driven Design (DDD) layout splitting shopping cart logic, order fulfillment, and core inventory catalog. Uses Spring's declarative transaction manager.",
-        database: "Relational tables containing Books, Authors, Users, CartItems, Orders, and OrderLineItems. Features specific composite primary keys for cart and line mappings.",
         security: "Allows public read-only paths for catalog browsing, while shopping carts and order checkouts are protected under individual user JWT authorizations.",
         lessons: "Implemented Spring's @Transactional annotation controls to rollback order sequences if target catalog book stock checks fail during checkout. Explored custom validations on model DTOs."
       },
@@ -173,7 +170,6 @@ export const resumeData = {
       details: {
         problem: "Educators need a lightweight platform to set up online quizzes, randomize answer choices, collect student inputs, and automatically score submissions while preventing duplicate responses or cheating.",
         architecture: "Modular controller layer providing question banks and scoring calculators. Integrates global exception translation for illegal attempt requests.",
-        database: "Tables representing Quizzes, Questions (carrying choices, text, and correct index), and AttemptLogs (storing answers, timestamp, user score, and user mapping).",
         security: "Role-based locks: only TEACHER or ADMIN users can execute POST/PUT/DELETE commands on quizzes and questions, while students are granted student scopes to retrieve questions and submit responses.",
         lessons: "Practiced modeling bidirectional One-to-Many mapping with CascadeType.ALL configurations in JPA, ensuring question banks update consistently when modifying parent quiz records."
       },
@@ -196,7 +192,6 @@ export const resumeData = {
       details: {
         problem: "Users require a simple, fast notes management API. The backend must enforce secure notes privacy, return user-friendly errors, validate titles/bodies, and operate with low overhead.",
         architecture: "Standard layered REST application utilizing ControllerAdvice for centralized, elegant error translation and binding validation.",
-        database: "Simplified relational schemas: 'users' and 'notes' joined via a foreign key on owner_id, containing creation and modification timestamps.",
         security: "JWT validation filter verifying that the logged-in client is the specific creator and owner of the note before performing any read, update, or delete commands.",
         lessons: "Mastered the usage of Spring validation library constraints (@Valid, @NotBlank) and gained deep familiarity handling unique constraint SQL exceptions elegantly."
       },

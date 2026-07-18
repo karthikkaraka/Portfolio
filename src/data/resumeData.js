@@ -6,7 +6,7 @@ export const resumeData = {
     phone: "+91 9346264848",
     email: "karthikkaraka444@gmail.com",
     linkedin: "https://www.linkedin.com/in/karaka-karthik",
-    github: "https://github.com/karthikkaraka444",
+    github: "https://github.com/karthikkaraka",
     summary: "Aspiring Full Stack Java Developer with a strong backend development focus and hands-on experience building secure, scalable applications using Java, Spring Boot, Spring Security, JWT, Hibernate, and MySQL. Experienced in developing REST APIs, authentication systems, database-driven applications, and full-stack projects using React. Passionate about software engineering and building real-world applications."
   },
   
@@ -108,7 +108,7 @@ export const resumeData = {
         lessons: "Learned how to design scalable search indices using pagination and filters in Spring Data JPA. Perfected the integration of React's state management with stateless JWT auth cookies and developed a resilient item-matching algorithm."
       },
       links: {
-        github: "https://github.com/karthikkaraka444/nostos",
+        github: "https://github.com/karthikkaraka/NOSTOSBACKEND",
         demo: null
       }
     },
@@ -130,7 +130,7 @@ export const resumeData = {
         lessons: "Mastered deep Hibernate performance techniques, including mapping lazy loaded relationships, custom JPQL joins, and using entity graphs to prevent typical N+1 query bottlenecks during staff roster compilation."
       },
       links: {
-        github: "https://github.com/karthikkaraka444/hospital-management",
+        github: "https://github.com/karthikkaraka/HospitalManagementSystem",
         demo: null
       }
     },
@@ -152,7 +152,7 @@ export const resumeData = {
         lessons: "Implemented Spring's @Transactional annotation controls to rollback order sequences if target catalog book stock checks fail during checkout. Explored custom validations on model DTOs."
       },
       links: {
-        github: "https://github.com/karthikkaraka444/bookstore-management",
+        github: "https://github.com/karthikkaraka/BOOKSTORE",
         demo: null
       }
     },
@@ -174,7 +174,7 @@ export const resumeData = {
         lessons: "Practiced modeling bidirectional One-to-Many mapping with CascadeType.ALL configurations in JPA, ensuring question banks update consistently when modifying parent quiz records."
       },
       links: {
-        github: "https://github.com/karthikkaraka444/quiz-app",
+        github: "https://github.com/karthikkaraka/QuizzBackend",
         demo: null
       }
     },
@@ -196,7 +196,7 @@ export const resumeData = {
         lessons: "Mastered the usage of Spring validation library constraints (@Valid, @NotBlank) and gained deep familiarity handling unique constraint SQL exceptions elegantly."
       },
       links: {
-        github: "https://github.com/karthikkaraka444/notes-app",
+        github: "https://github.com/karthikkaraka/NOTESAPP",
         demo: null
       }
     }

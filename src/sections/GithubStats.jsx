@@ -1,11 +1,77 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { GitPullRequest, GitFork, Star, Info, ExternalLink } from 'lucide-react';
 
 export default function GithubStats() {
   const [hoveredDay, setHoveredDay] = useState(null);
+  const [contributionsData, setContributionsData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
+  const [reposData, setReposData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchGithubStats() {
+      try {
+        const username = 'karthikkaraka';
+        
+        // Fetch contributions calendar
+        const contribPromise = fetch(`https://github-contributions-api.deno.dev/${username}.json`)
+          .then(res => res.ok ? res.json() : null)
+          .catch(() => null);
+
+        // Fetch user profile stats
+        const profilePromise = fetch(`https://api.github.com/users/${username}`)
+          .then(res => res.ok ? res.json() : null)
+          .catch(() => null);
+
+        // Fetch user repositories
+        const reposPromise = fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+          .then(res => res.ok ? res.json() : [])
+          .catch(() => []);
+
+        const [contribs, profile, repos] = await Promise.all([
+          contribPromise,
+          profilePromise,
+          reposPromise
+        ]);
+
+        if (contribs) {
+          setContributionsData(contribs);
+        }
+        if (profile) {
+          setProfileData(profile);
+        }
+        if (repos && repos.length > 0) {
+          setReposData(repos);
+        }
+      } catch (err) {
+        console.error("Error loading GitHub stats:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchGithubStats();
+  }, []);
 
   // Generate 53 weeks * 7 days = 371 contributions grid
   const contributions = useMemo(() => {
+    if (contributionsData && contributionsData.contributions) {
+      const flatDays = contributionsData.contributions.flat();
+      return flatDays.map((day) => {
+        let level = 0;
+        if (day.contributionLevel === 'FIRST_QUARTILE') level = 1;
+        else if (day.contributionLevel === 'SECOND_QUARTILE') level = 2;
+        else if (day.contributionLevel === 'THIRD_QUARTILE') level = 3;
+        else if (day.contributionLevel === 'FOURTH_QUARTILE') level = 4;
+
+        return {
+          date: new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          count: day.contributionCount,
+          level
+        };
+      });
+    }
+
+    // Fallback: Generate the same nice mock matrix if API fails or is loading
     const list = [];
     const date = new Date('2025-05-31');
     
@@ -39,41 +105,88 @@ export default function GithubStats() {
       });
     }
     return list;
-  }, []);
+  }, [contributionsData]);
 
-  const stats = [
-    { label: 'Total Commits', value: '1,482' },
-    { label: 'Pull Requests', value: '143' },
-    { label: 'Repositories', value: '18' },
-    { label: 'Contributions', value: '874' }
-  ];
-
-  const highlights = [
-    {
-      name: 'nostos',
-      description: 'Lost & Found management platform secured with JWT filter guards, OTP verifications, duplicate claim checking modules, and admin moderators.',
-      stars: 48,
-      forks: 12,
-      language: 'Java',
-      langColor: '#b07219'
-    },
-    {
-      name: 'hospital-management',
-      description: 'Clinic administration REST APIs featuring custom Hibernate query abstractions, fetch joins, and granular Role-Based Access controls.',
-      stars: 34,
-      forks: 8,
-      language: 'Java',
-      langColor: '#b07219'
-    },
-    {
-      name: 'bookstore-management',
-      description: 'E-commerce transactional API infrastructure handling concurrent catalog book inventory queries, carts, and order checkout rollbacks.',
-      stars: 29,
-      forks: 5,
-      language: 'Java',
-      langColor: '#b07219'
+  // Compute month labels aligned to the dynamic weeks
+  const monthLabels = useMemo(() => {
+    const labels = [];
+    let prevMonth = -1;
+    
+    if (contributionsData && contributionsData.contributions) {
+      contributionsData.contributions.forEach((week, weekIdx) => {
+        if (week && week.length > 0) {
+          const dateVal = new Date(week[0].date);
+          const m = dateVal.getMonth();
+          if (m !== prevMonth) {
+            labels.push({
+              name: dateVal.toLocaleDateString('en-US', { month: 'short' }),
+              weekIndex: weekIdx
+            });
+            prevMonth = m;
+          }
+        }
+      });
     }
-  ];
+    return labels;
+  }, [contributionsData]);
+
+  const stats = useMemo(() => {
+    const totalRepos = profileData ? profileData.public_repos : 23;
+    const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0) || 3;
+    const followers = profileData ? profileData.followers : 3;
+    const contributionsCount = contributionsData ? contributionsData.totalContributions : 874;
+
+    return [
+      { label: 'Public Repos', value: totalRepos.toString() },
+      { label: 'Total Stars', value: totalStars.toString() },
+      { label: 'Followers', value: followers.toString() },
+      { label: 'Year Activity', value: contributionsCount.toLocaleString() }
+    ];
+  }, [profileData, reposData, contributionsData]);
+
+  const highlights = useMemo(() => {
+    const config = [
+      {
+        key: 'NOSTOSBACKEND',
+        fallbackName: 'NOSTOSBACKEND',
+        description: 'Lost & Found management platform secured with JWT filter guards, OTP verifications, duplicate claim checking modules, and admin moderators.',
+        fallbackStars: 0,
+        fallbackForks: 0,
+        language: 'Java',
+        langColor: '#b07219'
+      },
+      {
+        key: 'HospitalManagementSystem',
+        fallbackName: 'HospitalManagementSystem',
+        description: 'Clinic administration REST APIs featuring custom Hibernate query abstractions, fetch joins, and granular Role-Based Access controls.',
+        fallbackStars: 1,
+        fallbackForks: 0,
+        language: 'Java',
+        langColor: '#b07219'
+      },
+      {
+        key: 'BOOKSTORE',
+        fallbackName: 'BOOKSTORE',
+        description: 'E-commerce transactional API infrastructure handling concurrent catalog book inventory queries, carts, and order checkout rollbacks.',
+        fallbackStars: 1,
+        fallbackForks: 0,
+        language: 'Java',
+        langColor: '#b07219'
+      }
+    ];
+
+    return config.map((cfg) => {
+      const actualRepo = reposData.find(r => r.name.toLowerCase() === cfg.key.toLowerCase());
+      return {
+        name: actualRepo ? actualRepo.name : cfg.fallbackName,
+        description: actualRepo && actualRepo.description ? actualRepo.description : cfg.description,
+        stars: actualRepo ? actualRepo.stargazers_count : cfg.fallbackStars,
+        forks: actualRepo ? actualRepo.forks_count : cfg.fallbackForks,
+        language: actualRepo && actualRepo.language ? actualRepo.language : cfg.language,
+        langColor: cfg.langColor
+      };
+    });
+  }, [reposData]);
 
   return (
     <section id="github" className="py-24 lg:py-32 bg-brand-bg relative overflow-hidden bg-grid-pattern">
@@ -141,15 +254,32 @@ export default function GithubStats() {
                   </div>
 
                   {/* Months indicator */}
-                  <div className="flex justify-between font-mono text-[9px] text-brand-muted/70 px-1.5 pt-2 select-none">
-                    <span>Jun 2025</span>
-                    <span>Aug 2025 (Internship)</span>
-                    <span>Oct 2025</span>
-                    <span>Dec 2025</span>
-                    <span>Feb 2026</span>
-                    <span>Apr 2026</span>
-                    <span>May 2026</span>
-                  </div>
+                  {monthLabels.length > 0 ? (
+                    <div 
+                      className="w-full font-mono text-[9px] text-brand-muted/70 pt-2 select-none relative h-4"
+                      style={{ display: 'grid', gridTemplateColumns: 'repeat(53, minmax(0, 1fr))', gap: '0.375rem' }}
+                    >
+                      {monthLabels.map((lbl, idx) => (
+                        <span 
+                          key={idx} 
+                          style={{ gridColumnStart: lbl.weekIndex + 1 }} 
+                          className="col-span-4 text-left whitespace-nowrap"
+                        >
+                          {lbl.name}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex justify-between font-mono text-[9px] text-brand-muted/70 px-1.5 pt-2 select-none">
+                      <span>Jun 2025</span>
+                      <span>Aug 2025 (Internship)</span>
+                      <span>Oct 2025</span>
+                      <span>Dec 2025</span>
+                      <span>Feb 2026</span>
+                      <span>Apr 2026</span>
+                      <span>May 2026</span>
+                    </div>
+                  )}
 
                 </div>
               </div>
@@ -205,7 +335,7 @@ export default function GithubStats() {
             {highlights.map((repo, idx) => (
               <a
                 key={idx}
-                href={`https://github.com/karthikkaraka444/${repo.name}`}
+                href={`https://github.com/karthikkaraka/${repo.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block editorial-card p-5 rounded-2xl group bg-white/[0.005]"

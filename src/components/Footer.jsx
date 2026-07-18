@@ -63,7 +63,7 @@ export default function Footer() {
           {/* Socials */}
           <div className="flex justify-center md:justify-end space-x-3.5">
             <a
-              href="https://github.com/karthikkaraka444"
+              href="https://github.com/karthikkaraka"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-lg bg-white/[0.01] border border-white/5 flex items-center justify-center text-brand-muted hover:text-white hover:border-white/20 transition-all duration-300"

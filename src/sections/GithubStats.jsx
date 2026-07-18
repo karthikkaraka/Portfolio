@@ -235,10 +235,10 @@ export default function GithubStats() {
                   <div className="grid grid-flow-col grid-rows-7 gap-1.5 h-28">
                     {contributions.map((day, idx) => {
                       let colorClass = 'bg-white/[0.03]'; // Level 0
-                      if (day.level === 1) colorClass = 'bg-emerald-950/30 border border-emerald-900/10';
-                      if (day.level === 2) colorClass = 'bg-emerald-800/40 border border-emerald-700/10';
-                      if (day.level === 3) colorClass = 'bg-emerald-600/50';
-                      if (day.level === 4) colorClass = 'bg-emerald-500';
+                      if (day.level === 1) colorClass = 'bg-brand-primary/15 border border-brand-primary/5';
+                      if (day.level === 2) colorClass = 'bg-brand-primary/35 border border-brand-primary/10';
+                      if (day.level === 3) colorClass = 'bg-brand-primary/65';
+                      if (day.level === 4) colorClass = 'bg-brand-primary';
 
                       return (
                         <div
@@ -300,10 +300,10 @@ export default function GithubStats() {
                 <div className="flex items-center gap-1 select-none text-[9px]">
                   <span>Less</span>
                   <div className="w-2.5 h-2.5 rounded-sm bg-white/[0.03]" />
-                  <div className="w-2.5 h-2.5 rounded-sm bg-emerald-950/30" />
-                  <div className="w-2.5 h-2.5 rounded-sm bg-emerald-800/40" />
-                  <div className="w-2.5 h-2.5 rounded-sm bg-emerald-600/50" />
-                  <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500" />
+                  <div className="w-2.5 h-2.5 rounded-sm bg-brand-primary/15 border border-brand-primary/5" />
+                  <div className="w-2.5 h-2.5 rounded-sm bg-brand-primary/35 border border-brand-primary/10" />
+                  <div className="w-2.5 h-2.5 rounded-sm bg-brand-primary/65" />
+                  <div className="w-2.5 h-2.5 rounded-sm bg-brand-primary" />
                   <span>More</span>
                 </div>
               </div>

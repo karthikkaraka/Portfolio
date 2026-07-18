@@ -6,13 +6,13 @@
   --font-heading: 'Outfit', sans-serif;
   --font-mono: 'Space Mono', monospace;
   
-  --color-brand-bg: #0B0F19;
-  --color-brand-bg-secondary: #0E1322;
-  --color-brand-card: #12182B;
-  --color-brand-primary: #7C3AED;
-  --color-brand-secondary: #3B82F6;
-  --color-brand-text: #FFFFFF;
-  --color-brand-muted: #8E98B0;
+  --color-brand-bg: #121214;                 /* Deep Warm Charcoal Black */
+  --color-brand-bg-secondary: #18181C;       /* Deep stone/slate background */
+  --color-brand-card: #1E1E24;               /* Dark Slate Card panels */
+  --color-brand-primary: #D95D39;            /* Editorial Rust/Terracotta Orange */
+  --color-brand-secondary: #E2B13C;          /* Sophisticated Muted Sand Gold */
+  --color-brand-text: #F5F5F0;               /* Soft Bone White */
+  --color-brand-muted: #A3A39C;              /* Soft Stone Gray */
   
   --animate-subtle-drift: subtle-drift 20s infinite alternate ease-in-out;
 }
@@ -35,14 +35,14 @@
 /* Custom Base Styles - Editorial human-made layout */
 html {
   scroll-behavior: smooth;
-  background-color: #0B0F19;
-  color: #FFFFFF;
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
   overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #0B0F19;
+  background-color: var(--color-brand-bg);
   min-height: 100vh;
   overflow-x: hidden;
   letter-spacing: -0.01em;
@@ -55,12 +55,12 @@ body {
   letter-spacing: 0.15em;
   font-size: 0.65rem;
   font-weight: 700;
-  color: #7C3AED;
+  color: var(--color-brand-primary);
 }
 
 /* Background wireframe dot matrix pattern */
 .bg-grid-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(245, 245, 240, 0.015) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -70,48 +70,48 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0F19;
+  background: var(--color-brand-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(245, 245, 240, 0.08);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.3);
+  background: rgba(217, 93, 57, 0.3); /* brand-primary alpha */
 }
 
 /* Editorial Minimalist Panels (Rob Bowen style) */
 .editorial-card {
-  background: #12182B;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  background: var(--color-brand-card);
+  border: 1px solid rgba(245, 245, 240, 0.04);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editorial-card:hover {
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(245, 245, 240, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
   transform: translateY(-2px);
 }
 
 .editorial-card-active {
-  background: #12182B;
-  border: 1px solid rgba(124, 58, 237, 0.15);
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.04);
+  background: var(--color-brand-card);
+  border: 1px solid rgba(217, 93, 57, 0.15);
+  box-shadow: 0 8px 30px rgba(217, 93, 57, 0.04);
 }
 
 .editorial-input {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  color: #FFFFFF;
+  background: rgba(245, 245, 240, 0.01);
+  border: 1px solid rgba(245, 245, 240, 0.05);
+  color: var(--color-brand-text);
   font-family: var(--font-sans);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editorial-input:focus {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(124, 58, 237, 0.4);
+  background: rgba(245, 245, 240, 0.02);
+  border-color: rgba(217, 93, 57, 0.4);
   outline: none;
 }
 
@@ -121,7 +121,7 @@ body {
   bottom: 0;
   left: 0;
   height: 2px;
-  background: #7C3AED;
+  background: var(--color-brand-primary);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 

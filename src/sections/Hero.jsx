@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Mail, Terminal, Shield } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
 import karthikImg from '../assets/karthik.png';
-import resumePdf from '../assets/KARTHIK_RESUME(5pro).pdf';
+import resumePdf from '../assets/Karthik_Karaka_Resume.pdf';
 
 export default function Hero() {
   const { name, title, summary } = resumeData.personal;
@@ -19,17 +19,6 @@ export default function Hero() {
           
           {/* Left Column: Bio Details */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
-            
-            {/* Small Monospace editorial tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="font-mono text-[10px] tracking-[0.25em] text-brand-primary uppercase font-bold flex items-center gap-2 select-none"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse" />
-              [ 00 / HELLO WORLD ]
-            </motion.div>
 
             {/* Name with tight, bold, editorial typography */}
             <div className="space-y-4">
@@ -147,10 +136,13 @@ export default function Hero() {
       </div>
       
       {/* Scroll Down Visual Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce pointer-events-none no-print">
-        <span className="font-mono text-[9px] tracking-[0.2em] text-brand-muted/70">SCROLL DOWN</span>
-        <div className="w-[1px] h-4 bg-brand-primary" />
-      </div>
+      <a
+        href="#about"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce no-print cursor-pointer group z-20"
+      >
+        <span className="font-mono text-[9px] tracking-[0.2em] text-brand-muted/70 group-hover:text-brand-primary transition-colors duration-300">SCROLL DOWN</span>
+        <div className="w-[1px] h-4 bg-brand-primary group-hover:h-6 transition-all duration-300" />
+      </a>
     </section>
   );
 }

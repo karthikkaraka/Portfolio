@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, Server, Database, ShieldCheck } from 'lucide-react';
+import { Briefcase, GraduationCap, Server, Database, ShieldCheck, BookOpen } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
 
 export default function Experience() {
@@ -13,9 +13,6 @@ export default function Experience() {
         {/* Title Section */}
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="editorial-label">
-              [ 05 / MILESTONES ]
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2 font-heading tracking-tight">
               PROFESSIONAL JOURNEY
             </h2>
@@ -107,17 +104,17 @@ export default function Experience() {
           {/* Timeline Item: Tirumala Junior College (2021 – 2023) */}
           <div className="relative pl-8 md:pl-10">
             {/* Timeline pin */}
-            <div className="absolute -left-[25px] top-2.5 w-3 h-3 rounded-full bg-brand-bg-secondary border border-white/10 flex items-center justify-center">
-              <div className="w-1 h-1 rounded-full bg-white/20" />
+            <div className="absolute -left-[25px] top-2.5 w-3 h-3 rounded-full bg-brand-bg-secondary border border-brand-primary flex items-center justify-center">
+              <BookOpen className="w-1.5 h-1.5 text-brand-primary" />
             </div>
 
             {/* Time badge floating on left for desktop */}
-            <div className="hidden md:block absolute -left-36 top-1.5 w-28 text-right font-mono text-[10px] text-brand-muted">
+            <div className="hidden md:block absolute -left-36 top-1.5 w-28 text-right font-mono text-[10px] text-brand-secondary font-bold uppercase tracking-wider">
               2021 – 2023 //
             </div>
 
             <div className="editorial-card p-6 sm:p-8 rounded-3xl">
-              <span className="md:hidden block font-mono text-[9px] text-brand-muted mb-2 uppercase">
+              <span className="md:hidden block font-mono text-[9px] text-brand-secondary font-bold uppercase tracking-wider mb-2">
                 Jun 2021 – May 2023 // SCHOOL
               </span>
               
@@ -125,7 +122,7 @@ export default function Experience() {
                 Intermediate (MPC)
               </h3>
               
-              <p className="font-mono text-[10px] text-brand-muted mt-1">
+              <p className="font-mono text-[10px] text-brand-secondary mt-1">
                 Tirumala Junior College
               </p>
               

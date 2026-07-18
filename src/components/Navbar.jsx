@@ -41,6 +41,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleScrollTo = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 no-print ${
       scrolled 
@@ -68,11 +87,11 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-300 rounded-md hover:text-white ${
+                  onClick={(e) => handleScrollTo(e, item.href)}
+                  className={`relative px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-300 rounded-md hover:text-white cursor-pointer ${
                     isActive ? 'text-white' : 'text-brand-muted hover:text-white/70'
                   }`}
                 >
-                  <span className="text-brand-primary mr-1 font-light text-[10px]">{item.num} //</span>
                   {item.name}
                   {isActive && (
                     <motion.div
@@ -86,14 +105,22 @@ export default function Navbar() {
             })}
             <a
               href="#contact"
-              className="ml-6 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-white border border-white/10 hover:border-brand-primary hover:bg-brand-primary/10 rounded-md transition-all duration-300 active:scale-[0.98]"
+              onClick={(e) => handleScrollTo(e, '#contact')}
+              className="ml-6 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-white border border-white/10 hover:border-brand-primary hover:bg-brand-primary/10 rounded-md transition-all duration-300 active:scale-[0.98] cursor-pointer"
             >
               [ CONNECT ]
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <div className="flex lg:hidden">
+          {/* Mobile Menu Trigger & Mobile Connect Button */}
+          <div className="flex lg:hidden items-center space-x-3">
+            <a
+              href="#contact"
+              onClick={(e) => handleScrollTo(e, '#contact')}
+              className="px-3 py-1.5 font-mono text-[9px] uppercase tracking-wider text-white border border-white/10 hover:border-brand-primary hover:bg-brand-primary/10 rounded-md transition-all duration-300 active:scale-[0.98] cursor-pointer"
+            >
+              CONNECT
+            </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -122,14 +149,13 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 rounded-xl text-sm font-mono tracking-wider transition-all duration-200 ${
+                    onClick={(e) => handleScrollTo(e, item.href)}
+                    className={`block px-4 py-3 rounded-xl text-sm font-mono tracking-wider transition-all duration-200 cursor-pointer ${
                       isActive 
                         ? 'text-white bg-white/5 border-l-2 border-brand-primary' 
                         : 'text-brand-muted hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    <span className="text-brand-primary text-xs mr-2 font-light">{item.num} /</span>
                     {item.name}
                   </a>
                 );
@@ -137,8 +163,8 @@ export default function Navbar() {
               <div className="pt-4 px-4">
                 <a
                   href="#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full py-3.5 text-center font-mono text-xs uppercase tracking-widest text-white border border-white/10 hover:border-brand-primary rounded-xl transition-all duration-200"
+                  onClick={(e) => handleScrollTo(e, '#contact')}
+                  className="block w-full py-3.5 text-center font-mono text-xs uppercase tracking-widest text-white border border-white/10 hover:border-brand-primary rounded-xl transition-all duration-200 cursor-pointer"
                 >
                   [ CONNECT ]
                 </a>

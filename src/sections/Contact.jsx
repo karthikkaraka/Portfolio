@@ -38,32 +38,26 @@ const EMAILJS_TEMPLATE_ID = 'template_1y91nfe'; // e.g., "template_xyz5678"
 const EMAILJS_PUBLIC_KEY = 'ggi6m6GUjxYH2TQA_';    // e.g., "AbCdEfGhIjKlMnOp"
 
 const GithubIcon = ({ className }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    stroke="currentColor"
-    strokeWidth="2"
-    fill="none"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.37 0 0 5.37 0 12C0 17.3 3.438 21.8 8.205 23.385C8.805 23.495 9.025 23.127 9.025 22.808C9.025 22.52 9.015 21.755 9.01 20.74C5.672 21.465 4.968 19.13 4.968 19.13C4.425 17.75 3.645 17.385 3.645 17.385C2.557 16.643 3.728 16.658 3.728 16.658C4.93 16.743 5.564 17.895 5.564 17.895C6.634 19.728 8.37 19.2 9.052 18.895C9.16 18.12 9.47 17.59 9.812 17.29C7.147 16.99 4.345 15.958 4.345 11.358C4.345 10.048 4.81 8.978 5.578 8.138C5.455 7.833 5.045 6.61 5.694 4.96C5.694 4.96 6.7 4.638 8.99 6.19C9.948 5.922 10.978 5.79 12.002 5.785C13.023 5.79 14.053 5.922 15.012 6.19C17.3 4.638 18.303 4.96 18.303 4.96C18.955 6.61 18.545 7.833 18.423 8.138C19.193 8.978 19.654 10.048 19.654 11.358C19.654 15.97 16.848 16.985 14.175 17.28C14.605 17.65 14.99 18.38 14.99 19.505C14.99 21.113 14.975 22.41 14.975 22.802C14.975 23.125 15.19 23.502 15.8 23.382C20.563 21.795 24 17.3 24 12C24 5.37 18.63 0 12 0Z" fill="#F5F5F0"/>
   </svg>
 );
 
 const LinkedinIcon = ({ className }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    stroke="currentColor"
-    strokeWidth="2"
-    fill="none"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
+  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+    <path d="M8.5 19H5.5V9.5H8.5V19ZM7 8.22C6.03 8.22 5.25 7.44 5.25 6.47C5.25 5.5 6.03 4.72 7 4.72C7.97 4.72 8.75 5.5 8.75 6.47C8.75 7.44 7.97 8.22 7 8.22ZM19 19H16V14.12C16 12.95 15.98 11.45 14.38 11.45C12.75 11.45 12.5 12.72 12.5 14.04V19H9.5V9.5H12.38V10.8H12.42C12.82 10.04 13.8 9.25 15.24 9.25C18.24 9.25 18.8 11.23 18.8 13.81V19H19Z" fill="white"/>
+  </svg>
+);
+
+const GmailIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="#eeeeee"/>
+    <path d="M22 6c0-1.1-.9-2-2-2h-3v7l5-3.75V6z" fill="#EA4335"/>
+    <path d="M2 6v3.25L7 11V4H4c-1.1 0-2 .9-2 2z" fill="#C5221F"/>
+    <path d="M2 18c0 1.1.9 2 2 2h3v-9l-5 3.75V18z" fill="#4285F4"/>
+    <path d="M17 11v9h3c1.1 0 2-.9 2-2v-5.75L17 11z" fill="#34A853"/>
+    <path d="M7 11v9h10v-9L12 7.25 7 11z" fill="#EA4335"/>
   </svg>
 );
 
@@ -162,9 +156,6 @@ export default function Contact() {
         {/* Title Section */}
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="editorial-label">
-              [ 07 / CONNECT ]
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2 font-heading tracking-tight">
               GET IN TOUCH
             </h2>
@@ -194,8 +185,8 @@ export default function Contact() {
                 href={`mailto:${email}`}
                 className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.005] border border-white/5 hover:border-brand-primary/20 hover:bg-brand-primary/5 transition-all duration-300 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-primary shrink-0">
-                  <Mail className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                  <GmailIcon className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-mono text-[9px] uppercase tracking-wider text-brand-muted font-bold">Email Me</h4>

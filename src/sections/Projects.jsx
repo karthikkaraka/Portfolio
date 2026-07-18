@@ -89,9 +89,6 @@ export default function Projects() {
         {/* Title Section */}
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="editorial-label">
-              [ 04 / PORTFOLIO ]
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2 font-heading tracking-tight">
               FEATURED PROJECTS
             </h2>

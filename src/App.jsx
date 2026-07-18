@@ -8,6 +8,7 @@ import Experience from './sections/Experience';
 import GithubStats from './sections/GithubStats';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
+import ScrollButton from './components/ScrollButton';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Scroll Guide Button */}
+      <ScrollButton />
     </div>
   );
 }
